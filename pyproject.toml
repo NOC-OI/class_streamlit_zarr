@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "streamlit-zarr"
+version = "0.1.0"
+description = ""
+authors = ["Tobias Ferreira"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+streamlit = "^1.33.0"
+zarr = "^2.17.2"
+xarray = "^2024.3.0"
+leafmap = "^0.31.9"
+python-dotenv = "^1.0.1"
+s3fs = "^2024.3.1"
+rioxarray = "^0.15.5"
+localtileserver = "^0.10.2"
+psutil = "^5.9.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
