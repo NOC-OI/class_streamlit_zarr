@@ -77,7 +77,9 @@ if plot_data:
     #     st.write(f"{dims}: {zarr_vis.ds.sizes[dims]}")
 
     try:
-        m.add_raster(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5])
+        m.add_local_tile(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5], debug=True)
+
+        # m.add_raster(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5])
     except Exception as e:
         st.error(e)
         st.error("Work in progress. Try it again later.")
