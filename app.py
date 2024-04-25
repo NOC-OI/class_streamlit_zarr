@@ -25,7 +25,7 @@ def get_palettes():
     # return ["matplotlib." + p for p in palettes]
 
 
-st.title("Visualize Raster Datasets")
+st.title("Visualize Zarr Datasets")
 st.markdown(
     """
 An interactive web app for visualizing local raster datasets).
@@ -38,7 +38,7 @@ if 'open_zarr_button' not in st.session_state:
 zarr_vis = load_file_list()
 variable_select = st.selectbox("Select the type of data", zarr_vis.list_of_variables)
 
-subdata_select = st.selectbox("Select the variable", zarr_vis.get_list_of_subdata(variable_select))
+subdata_select = st.selectbox("Select the variable", zarr_vis.get_list_of_subdata(variable_select), index=len(zarr_vis.get_list_of_subdata(variable_select))-1)
 
 zarr_vis.update_data_path(variable_select, subdata_select)
 
@@ -71,15 +71,19 @@ if plot_data:
     with st.spinner('Clipping and Plotting Data...'):
         zarr_vis.sel_zarr_data(ds, limits)
         geotiff_file = zarr_vis.convert_to_geotiff()
+        # png_file = zarr_vis.convert_to_png()
         
     # st.write('Data dimensions:')
     # for dims in zarr_vis.ds.sizes:
     #     st.write(f"{dims}: {zarr_vis.ds.sizes[dims]}")
 
     try:
-        m.add_local_tile(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5], debug=True)
+        # m.add_local_tile(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5], debug=True)
+        # image = leafmap.ImageOverlay(url=png_file, bounds=(
+        #     (zarr_vis.limits[0][0], zarr_vis.limits[0][1]), (zarr_vis.limits[1][0], zarr_vis.limits[1][1])))
 
-        # m.add_raster(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5])
+        # m.add_layer(image)
+        m.add_raster(geotiff_file, colormap="terrain", layer_name=subdata_select[:-5], debug=True)
     except Exception as e:
         st.error(e)
         st.error("Work in progress. Try it again later.")

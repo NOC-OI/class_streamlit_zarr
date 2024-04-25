@@ -59,14 +59,25 @@ class ZarrVisualization():
         temp_file.close()
         return temp_file.name
 
+    def convert_to_png(self):
+        """_summary_
+        """
+        temp_file = NamedTemporaryFile(suffix='.tif', delete=False)
+        # self.ds.rio.to_raster(temp_file.name, driver="COG", tiled=True, windowed=True)
+        self.ds.rio.to_raster(temp_file.name, driver="PNG")
+ 
+        temp_file.close()
+        return temp_file.name
+
     def sel_zarr_data(self, ds, limits):
         """_summary_
         """
         self.ds = ds
-        self.ds = self.ds.sel(y=slice(limits[0][0], limits[0][1]))
-        self.ds = self.ds.sel(x=slice(limits[1][0], limits[1][1]))
-        if limits[2]:
-            self.ds = self.ds.sel(time_counter=limits[2])
+        self.limits = limits
+        self.ds = self.ds.sel(y=slice(self.limits[0][0], self.limits[0][1]))
+        self.ds = self.ds.sel(x=slice(self.limits[1][0], self.limits[1][1]))
+        if self.limits[2]:
+            self.ds = self.ds.sel(time_counter=self.limits[2])
         self.ds.attrs['scale_factor'] = 1.0
         self.ds.attrs['add_offset'] = 0.0
         self.ds = self.ds.assign_coords(band=1)
