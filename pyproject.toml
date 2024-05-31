@@ -16,6 +16,10 @@ s3fs = "^2024.3.1"
 rioxarray = "^0.15.5"
 localtileserver = "^0.10.2"
 psutil = "^5.9.8"
+jupyterlab = "^4.2.0"
+plotly = "^5.22.0"
+iris = "^1.0.7"
+scitools-iris = "^3.9.0"
 
 
 [build-system]
