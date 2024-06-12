@@ -69,12 +69,20 @@ def get_palettes_leaflet():
 st.title("Visualize Zarr Datasets")
 st.markdown('### An interactive web app for visualizing local raster datasets.')
 
+
+st.markdown('#### SELECT BUCKET')
+bucket_selected = st.selectbox("Select bucket by chunk strategy:", ['1,400,300', '1,100,100'], index=0)
+if bucket_selected == '1,400,300':
+    zarr_vis = ZarrVisualization(bucket_name="tobfer6")
+else:
+    zarr_vis = ZarrVisualization(bucket_name="tobferchunk4")
+
 st.markdown('#### SELECT DATASET AND VARIABLE')
 
 if 'open_zarr_button' not in st.session_state:
     st.session_state.disabled = True
 
-zarr_vis = load_file_list()
+# zarr_vis = load_file_list()
 variable_select = st.selectbox("Select the type of data", zarr_vis.list_of_variables)
 
 subdata_select = st.selectbox("Select the variable",
@@ -88,7 +96,7 @@ st.write(f"Data Path: {zarr_vis.data_path}")
 
 ds = load_zarr_file(zarr_vis, subdata_select)
 
-st.write(f"Dataset dimensions: {ds.sizes}")
+# st.write(f"Dataset dimensions: {ds.sizes}")
 
 if "x" in ds.dims and "bounds" not in subdata_select:
     st.markdown('#### SELECT LIMITS')

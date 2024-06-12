@@ -1,2 +1,4 @@
 .env
 .python-version
+*.pem
+*.ipynb_checkpoints/
