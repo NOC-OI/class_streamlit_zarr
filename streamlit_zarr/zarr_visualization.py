@@ -9,14 +9,7 @@ from dotenv import load_dotenv
 import s3fs
 import iris
 import cartopy.crs as ccrs
-import numpy as np
-# import ipywidgets as widgets
-# from ipyleaflet import Map, basemaps
-# from ipyleaflet.leaflet import TileLayer, LayersControl
-# from localtileserver import get_leaflet_tile_layer, TileClient
-# from rio_tiler.io import COGReader
 
-# load_dotenv()
 load_dotenv()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
