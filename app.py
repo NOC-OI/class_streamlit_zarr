@@ -1,8 +1,7 @@
 import leafmap.foliumap as leafmap
 import os
-import leafmap.colormaps as cm
 import streamlit as st
-from streamlit_zarr.zarr_visualization_new import ZarrVisualization
+from streamlit_zarr.zarr_visualization import ZarrVisualization
 import urllib
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -64,9 +63,6 @@ def get_palettes_leaflet():
     return list_of_palettes
     # palettes = dir(palettable.matplotlib)[:-16]
     # return ["matplotlib." + p for p in palettes]
-
-
-
 
 
 
